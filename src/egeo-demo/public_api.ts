@@ -9,6 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 export { StAlertsDemoModule } from './st-alert-demo/st-alerts-demo.module';
+export { StComboboxDemoModule } from './st-combobox-demo/st-combobox-demo.module';
 export { StFormDemoModule } from './st-form-demo/st-form-demo.module';
 export { StTwoListSelectionDemoModule } from './st-two-list-selection-demo/st-two-list-selection-demo.module';
 export { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';

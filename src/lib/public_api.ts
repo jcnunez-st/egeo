@@ -53,6 +53,9 @@ export { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 // Button
 export { StButtonModule } from './st-button/st-button.module';
 
+// Combobox
+export * from './st-combobox/index';
+
 // Checkbox
 export { StCheckboxModule } from './st-checkbox/st-checkbox.module';
 

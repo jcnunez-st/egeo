@@ -1,0 +1,51 @@
+<!--
+
+    Copyright (C) 2016 Stratio (http://stratio.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<div class="st-input sth-input">
+   <div class="st-input-container sth-input-container">
+      <label class="st-input-title sth-input-title" [attr.for]="name">
+         <st-tooltip
+               *ngIf="contextualHelp"
+               [qaTag]="qaTag + '-contextual-help'"
+               [showOnClick]="true"
+               [text]="contextualHelp">
+            <span>{{label}}</span>
+            <span class="icon-help2"></span>
+         </st-tooltip>
+         <span *ngIf="!contextualHelp">{{label}}</span>
+      </label>
+      <input
+            #input
+            class="st-input-remove-default sth-input-remove-default"
+            [attr.id]="qaTag"
+            [attr.max]="max"
+            [attr.maxlength]="maxLength"
+            [attr.min]="min"
+            [attr.type]="fieldType"
+            [formControl]="internalControl"
+            [name]="name"
+            [placeholder]="placeholder"
+            [readonly]="readonly"
+            (blur)="onFocusOut($event)"
+            (focus)="onFocus($event)"
+            (focusout)="onFocusOut($event)">
+      <span class="st-input-bar"></span>
+   </div>
+   <div class="st-input-error-layout" *ngIf="showError()">
+      <span class="st-input-error-message sth-input-error-message">{{errorMessage}}</span>
+   </div>
+</div>
