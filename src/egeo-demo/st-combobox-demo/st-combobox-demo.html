@@ -17,3 +17,120 @@
 -->
 
 <st-combobox [label]="'algo'"></st-combobox>
+<!--
+<section class="container-liquid">
+   <h2>TEMPLATE DRIVEN EXAMPLE</h2>
+   <form #templateDrivenForm="ngForm" autocomplete="off" class="col-md-10" novalidate>
+      <div class="form-group">
+         <st-select
+               contextualHelp="Select option from list"
+               label="Option 1"
+               name="option1-template"
+               placeholder="Select option"
+               qaTag="combo-option1-template-example"
+               required
+               [errorRequiredMessage]="errorMessage"
+               [forceValidations]="forceValidations"
+               [options]="options"
+               [(ngModel)]="model.option1">
+         </st-select>
+         <br>
+         <st-select
+               required
+               label="Option 2"
+               name="option2-template"
+               placeholder="Select option"
+               qaTag="combo-option2-template-example"
+               [errorRequiredMessage]="errorMessage"
+               [forceValidations]="forceValidations"
+               [options]="options"
+               [(ngModel)]="model.option2">
+         </st-select>
+      </div>
+      <br>
+      <br>
+      <st-button
+            inputType="submit"
+            leftIcon="icon-circle-check"
+            qaTag="button-submit"
+            text="Submit">
+      </st-button>
+      <br>
+      <br>
+      <div *ngIf="templateDrivenForm.valid">
+         <h2>Form status: VALID</h2>
+      </div>
+      <div *ngIf="!templateDrivenForm.valid">
+         <h2>Form status: INVALID</h2>
+      </div>
+   </form>
+
+   <br>
+   <br>
+
+   <h2>MODEL DRIVEN / REACTIVE EXAMPLE</h2>
+   <form autocomplete="off" class="col-md-10" novalidate [formGroup]="reactiveForm">
+      <div class="form-group">
+         <st-select
+               contextualHelp="Select option from list"
+               formControlName="option1"
+               label="Option 1"
+               name="option1"
+               placeholder="Select option"
+               qaTag="combo-option1-template-example"
+               [options]="options"
+               [errorRequiredMessage]="errorMessage"
+               [forceValidations]="forceValidations">
+         </st-select>
+         <br>
+         <st-select
+               formControlName="option2"
+               label="Option 2"
+               name="option2"
+               placeholder="Select option"
+               qaTag="combo-option2-template-example"
+               [errorRequiredMessage]="errorMessage"
+               [forceValidations]="forceValidations"
+               [options]="options">
+         </st-select>
+      </div>
+      <br>
+      <br>
+      <st-button
+            inputType="submit"
+            leftIcon="icon-circle-check"
+            qaTag="button-submit"
+            text="Submit">
+      </st-button>
+      <br>
+      <br>
+      <div *ngIf="reactiveForm.valid">
+         <h2>Form status: VALID</h2>
+      </div>
+      <div *ngIf="!reactiveForm.valid">
+         <h2>Form status: INVALID</h2>
+      </div>
+   </form>
+
+   <br>
+   <st-button
+         inputType="button"
+         leftIcon="icon-circle-check"
+         qaTag="button-validate"
+         subtypeClass="subtype3"
+         text="Force validations"
+         (onClick)="changeForceValidations()">
+   </st-button>
+   <st-button
+         inputType="button"
+         leftIcon="icon-circle-check"
+         qaTag="button-disable"
+         subtypeClass="subtype2"
+         text="Change disable status"
+         (onClick)="changeDisabled()">
+   </st-button>
+   <div>
+      {{model | json}}
+   </div>
+</section>
+-->
