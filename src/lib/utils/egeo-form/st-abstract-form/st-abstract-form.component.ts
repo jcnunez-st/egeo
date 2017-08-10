@@ -19,6 +19,7 @@ import {
    ChangeDetectorRef,
    Component,
    EventEmitter,
+   forwardRef,
    Input,
    OnChanges,
    OnDestroy,
@@ -36,16 +37,20 @@ import {
 } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { StInputError } from '../../../st-input/st-input.error.model';
+import { StFormError } from '../st-form-error/st-form-error.model';
 
 @Component({
-
+   providers: [
+      { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => StAbstractFormComponent), multi: true },
+      { provide: NG_VALIDATORS, useExisting: forwardRef(() => StAbstractFormComponent), multi: true }
+   ],
+   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StInputComponent implements ControlValueAccessor, OnChanges, OnInit, OnDestroy {
+export class StAbstractFormComponent implements ControlValueAccessor, OnChanges, OnDestroy, OnInit {
 
    @Input() contextualHelp: string;
-   @Input() errors: StInputError;
+   @Input() errors: StFormError;
    @Input() fieldType: 'text' | 'number' | 'password';
    @Input() forceValidations: boolean;
    @Input() isFocused: boolean;
@@ -71,15 +76,15 @@ export class StInputComponent implements ControlValueAccessor, OnChanges, OnInit
 
    @ViewChildren('input') vc: any;
 
-   public isDisabled: boolean = false; // To check disable
-   public focus: boolean = false;
+   public errorMessage: string;
+   public focus: boolean;
    public internalControl: FormControl;
-   public errorMessage: string = undefined;
+   public isDisabled: boolean;
 
-   private sub: Subscription;
    private _value: any;
+   private internalInputModel: any;
+   private sub: Subscription;
    private valueChangeSub: Subscription;
-   private internalInputModel: any = '';
 
    constructor(private _cd: ChangeDetectorRef) {
       this.fieldType = 'text';
@@ -91,6 +96,11 @@ export class StInputComponent implements ControlValueAccessor, OnChanges, OnInit
       this.readonly = false;
 
       this.change = new EventEmitter<any>();
+
+      this.errorMessage = undefined;
+      this.focus = false;
+      this.isDisabled = false;
+      this.internalInputModel = '';
    }
 
    onChange = (_: any) => { };

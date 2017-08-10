@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { StAbstractFormComponent } from '../utils/egeo-form/index';
+import { StAbstractFormComponent } from './st-abstract-form/st-abstract-form.component';
 
-
-@Component({
-   selector: 'st-combobox',
-   templateUrl: './st-combobox.component.html',
-   styleUrls: [ './st-combobox.component.scss' ]
+@NgModule({
+   imports: [ CommonModule ],
+   declarations: [ StAbstractFormComponent ],
+   exports: [ StAbstractFormComponent ]
 })
-
-export class StComboboxComponent extends StAbstractFormComponent {
-
-}
+export class EgeoFormModule { }

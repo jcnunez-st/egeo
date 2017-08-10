@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Stratio (http://stratio.com)
+ * Copyright (C) 2017 Stratio (http://stratio.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,6 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
-
-import { StAbstractFormComponent } from '../utils/egeo-form/index';
-
-
-@Component({
-   selector: 'st-combobox',
-   templateUrl: './st-combobox.component.html',
-   styleUrls: [ './st-combobox.component.scss' ]
-})
-
-export class StComboboxComponent extends StAbstractFormComponent {
-
-}
+export * from './st-abstract-form/st-abstract-form.component';
+export * from './st-form-error/st-form-error.model';
+export * from './egeo-form.module';

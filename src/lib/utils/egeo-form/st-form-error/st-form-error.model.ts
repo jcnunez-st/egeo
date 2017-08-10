@@ -14,17 +14,27 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
+import { TranslateableElement } from '../../egeo-resolver/egeo-resolve-model';
 
-import { StAbstractFormComponent } from '../utils/egeo-form/index';
-
-
-@Component({
-   selector: 'st-combobox',
-   templateUrl: './st-combobox.component.html',
-   styleUrls: [ './st-combobox.component.scss' ]
-})
-
-export class StComboboxComponent extends StAbstractFormComponent {
-
+export interface StFormError {
+   generic?: string;
+   max?: string;
+   maxLength?: string;
+   min?: string;
+   minLength?: string;
+   pattern?: string;
+   required?: string;
+   type?: string;
 }
+
+export interface StFormErrorSchema {
+   generic?: TranslateableElement;
+   max?: TranslateableElement;
+   maxLength?: TranslateableElement;
+   min?: TranslateableElement;
+   minLength?: TranslateableElement;
+   pattern?: TranslateableElement;
+   required?: TranslateableElement;
+   type?: TranslateableElement;
+}
+
