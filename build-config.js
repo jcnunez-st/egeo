@@ -25,12 +25,12 @@ const buildLicense = `/**
  */`;
 
 module.exports = {
-  projectVersion: buildVersion,
-  projectDir: __dirname,
-  packagesDir: join(__dirname, 'src'),
-  outputDir: join(__dirname, 'dist'),
-  licenseBanner: buildLicense,
-  htmlPath: 'html',
-  mdPath: 'md',
-  docPath: 'docs'
+   projectVersion: buildVersion,
+   projectDir: __dirname,
+   packagesDir: join(__dirname, 'src'),
+   outputDir: join(__dirname, 'dist'),
+   licenseBanner: buildLicense,
+   htmlPath: 'html',
+   mdPath: 'md',
+   docPath: 'docs'
 };
