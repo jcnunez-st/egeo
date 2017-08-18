@@ -25,6 +25,7 @@
 * st-input: Add input value and output change
 * st-form: Create a dynamic form with inputs
 * st-form: Add switches to dynamic form
+* update stratio-theme to 0.14.0
 
 **Refactor:**
 
