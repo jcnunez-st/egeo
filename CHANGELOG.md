@@ -2,7 +2,9 @@
 
 ## 4.0.0 (upcoming)
 
-* Pending changelog
+**Documentation:**
+
+* Update license
 
 ## 3.0.0 (August 18, 2017)
 

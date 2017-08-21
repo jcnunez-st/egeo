@@ -124,6 +124,15 @@
          <plugin>
             <groupId>com.mycila</groupId>
             <artifactId>license-maven-plugin</artifactId>
+            <configuration>
+               <header>${license.header}</header>
+               <includes>
+                  <include>src/**</include>
+                  <include>test/**</include>
+                  <include>tools/**</include>
+                  <include>*.js</include>
+               </includes>
+            </configuration>
          </plugin>
       </plugins>
    </build>
