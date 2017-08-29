@@ -10,7 +10,7 @@
  */
 import { Component, Input } from '@angular/core';
 
-import { StAbstractFormComponent } from '../utils/egeo-form/index';
+import { StFormBaseComponent } from '../st-form/index';
 
 
 @Component({
@@ -19,6 +19,6 @@ import { StAbstractFormComponent } from '../utils/egeo-form/index';
    styleUrls: [ './st-combobox.component.scss' ]
 })
 
-export class StComboboxComponent extends StAbstractFormComponent {
+export class StComboboxComponent extends StFormBaseComponent {
 
 }

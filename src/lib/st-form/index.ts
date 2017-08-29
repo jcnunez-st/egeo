@@ -11,3 +11,4 @@
 export * from './st-form.module';
 export * from './st-form-base/st-form-base.component';
 export * from './st-form-error/st-form-error.model';
+export * from './st-label/st-label.component';

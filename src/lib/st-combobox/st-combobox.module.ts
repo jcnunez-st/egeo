@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StInputModule } from '../st-input/st-input.module';
 import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
 import { StComboboxComponent } from './st-combobox.component';
+import { StFormModule } from '../st-form/index';
 
 @NgModule({
    declarations: [
@@ -25,6 +26,7 @@ import { StComboboxComponent } from './st-combobox.component';
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
+      StFormModule,
       StInputModule,
       StTooltipModule
    ]

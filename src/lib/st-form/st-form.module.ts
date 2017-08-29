@@ -17,7 +17,9 @@ import { StFormComponent } from './st-form.component';
 import { StFormDirectiveModule } from '../directives/form/form-directives.module';
 import { StFormFieldComponent } from './st-form-field/st-form-field.component';
 import { StInputModule } from '../st-input/st-input.module';
+import { StLabelComponent } from './st-label/st-label.component';
 import { StSwitchModule } from '../st-switch/st-switch.module';
+import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
 
 @NgModule({
    imports: [
@@ -27,13 +29,18 @@ import { StSwitchModule } from '../st-switch/st-switch.module';
       ReactiveFormsModule,
       StFormDirectiveModule,
       StInputModule,
-      StSwitchModule
+      StSwitchModule,
+      StTooltipModule
    ],
    declarations: [
       StFormComponent,
-      StFormFieldComponent
+      StFormFieldComponent,
+      StLabelComponent
    ],
-   exports: [ StFormComponent ]
+   exports: [
+      StFormComponent,
+      StLabelComponent
+   ]
 })
 
 export class StFormModule { }

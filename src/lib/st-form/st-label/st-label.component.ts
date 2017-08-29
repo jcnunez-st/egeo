@@ -8,14 +8,20 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { StAbstractFormComponent } from './st-abstract-form/st-abstract-form.component';
-
-@NgModule({
-   imports: [ CommonModule ],
-   declarations: [ StAbstractFormComponent ],
-   exports: [ StAbstractFormComponent ]
+@Component({
+   host: {class: 'sth-label'},
+   selector: '[st-label]',
+   styleUrls: ['./st-label.component.scss'],
+   templateUrl: './st-label.component.html'
 })
-export class EgeoFormModule { }
+
+export class StLabelComponent {
+   @Input() contextualHelp: string;
+
+   constructor() {
+      this.contextualHelp = '';
+   }
+}
+

@@ -10,10 +10,13 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<label class="sth-input-title" [ngClass]="{error: showError(), active: focus, disabled: isDisabled}" [attr.for]="name">
-   <st-tooltip *ngIf="contextualHelp" [text]="contextualHelp" [showOnClick]="true" [qaTag]="qaTag + '-contextual-help'">
-      <span>{{label}}</span>
-      <span class="icon-help2"></span>
-   </st-tooltip>
-   <span *ngIf="!contextualHelp">{{label}}</span>
-</label>
+<span class="content">
+   <ng-content></ng-content>
+</span>
+<st-tooltip
+      *ngIf="contextualHelp"
+      [qaTag]="qaTag + '-contextual-help'"
+      [showOnClick]="true"
+      [text]="contextualHelp">
+   <span class="icon-help2"></span>
+</st-tooltip>
