@@ -30,6 +30,7 @@ export const routes: Routes = [
          { path: 'info-box-demo', loadChildren: '@stratio/egeo-demo#StInfoBoxDemoModule' },
          { path: 'input', loadChildren: '@stratio/egeo-demo#StInputDemoModule' },
          { path: 'item-list-demo', loadChildren: '@stratio/egeo-demo#StItemListDemoModule' },
+         { path: 'label-demo', loadChildren: '@stratio/egeo-demo#StLabelDemoModule' },
          { path: 'main', component: MainComponent },
          { path: 'modal-demo', loadChildren: '@stratio/egeo-demo#StModalDemoModule' },
          { path: 'pagination-demo', loadChildren: '@stratio/egeo-demo#StPaginationDemoModule' },
