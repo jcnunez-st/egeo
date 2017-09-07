@@ -20,10 +20,22 @@ import { StFormDirectiveModule } from '../directives/form/form-directives.module
 import { StSwitchModule } from '../st-switch/st-switch.module';
 
 @NgModule({
-   imports: [CommonModule, FormsModule, ReactiveFormsModule, StInputModule, StSwitchModule, PipesModule, StFormDirectiveModule],
-   declarations: [StFormComponent, StFormFieldComponent],
-   exports: [StFormComponent]
+   declarations: [
+      StFormComponent,
+      StFormFieldComponent
+   ],
+   exports: [
+      StFormComponent
+   ],
+   imports: [
+      CommonModule,
+      FormsModule,
+      PipesModule,
+      ReactiveFormsModule,
+      StFormDirectiveModule,
+      StInputModule,
+      StSwitchModule
+   ]
 })
 
-export class StFormModule {
-}
+export class StFormModule { }
