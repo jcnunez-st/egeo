@@ -8,19 +8,14 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { StTooltipComponent } from '../st-tooltip';
+import { StErrorComponent } from './st-error.component';
 
-@Component({
-   host: {class: 'st-label'},
-   selector: '[st-label]',
-   styleUrls: ['../st-tooltip/st-tooltip.component.scss'],
-   templateUrl: './st-label.component.html'
+@NgModule({
+   declarations: [StErrorComponent],
+   exports: [StErrorComponent],
+   imports: [CommonModule]
 })
-
-export class StLabelComponent extends StTooltipComponent {
-   constructor(private _el: ElementRef) {
-      super(_el);
-   }
- }
+export class StErrorModule { }

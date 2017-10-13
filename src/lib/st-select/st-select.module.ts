@@ -12,14 +12,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { StLabelModule } from '../forms/st-label/st-label.module';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StSelectComponent } from './st-select';
 import { StCheckValidationsDirective } from './st-check-validations';
 
 @NgModule({
-   imports: [CommonModule, StDropdownMenuModule, FormsModule, ReactiveFormsModule],
+   imports: [CommonModule, StDropdownMenuModule, StLabelModule, FormsModule, ReactiveFormsModule],
    declarations: [StSelectComponent, StCheckValidationsDirective],
    exports: [StSelectComponent, StCheckValidationsDirective]
 })
-export class StSelectModule {
-}
+export class StSelectModule { }

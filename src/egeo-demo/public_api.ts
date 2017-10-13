@@ -25,7 +25,7 @@ export { StHelpDemoModule } from './st-help-demo/st-help-demo.module';
 import { StHorizontalTabsDemoModule } from './st-horizontal-tabs-demo/st-horizontal-tabs-demo.module';
 export { StInfoBoxDemoModule } from './st-info-box-demo/st-info-box-demo.module';
 export { StInfoCardDemoModule } from './st-info-card-demo/st-info-card-demo.module';
-export { StInputDemoModule } from './st-input-demo/st-input-demo.module';
+export { StInputOldDemoModule } from './st-input-demo/st-input-demo.module';
 export { StItemListDemoModule } from './st-item-list-demo/st-item-list-demo.module';
 export { StLabelDemoModule } from './st-label-demo/index';
 export { StLauncherDemoModule } from './st-launcher-demo/st-launcher-demo.module';

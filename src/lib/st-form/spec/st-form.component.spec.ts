@@ -15,7 +15,7 @@ import { JSON_SCHEMA } from './resources/json-schema';
 import { StFormFieldComponent } from '../st-form-field/st-form-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '../../pipes/pipes.module';
-import { StInputModule } from '../../st-input/st-input.module';
+import { StInputOldModule } from '../../st-input/st-input.module';
 import { StFormDirectiveModule } from '../../directives/form/form-directives.module';
 import { StSwitchModule } from '../../st-switch/st-switch.module';
 import { StTooltipComponent } from '../../st-tooltip/st-tooltip.component';
@@ -26,7 +26,7 @@ let fixture: ComponentFixture<StFormComponent>;
 describe('StFormComponent', () => {
    beforeEach(async(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StInputModule, StSwitchModule, PipesModule, StFormDirectiveModule],
+         imports: [FormsModule, ReactiveFormsModule, StInputOldModule, StSwitchModule, PipesModule, StFormDirectiveModule],
          declarations: [StFormComponent, StFormFieldComponent]
       })
          .compileComponents();  // compile template and css

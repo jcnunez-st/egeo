@@ -10,18 +10,21 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StDemoGeneratorModule, StFormsModule } from '@stratio/egeo';
 
-import { StDemoGeneratorModule, StFormModule, StInputOldModule } from '@stratio/egeo';
-import { StFormDemoComponent } from './st-form-demo';
+import { StInputDemoComponent } from './st-input-demo.component';
 
 @NgModule({
+   declarations: [StInputDemoComponent],
    imports: [
       CommonModule,
-      StFormModule,
-      StInputOldModule,
-      StDemoGeneratorModule.withComponents({ components: [StFormDemoComponent] })
-   ],
-   declarations: [StFormDemoComponent]
+      StDemoGeneratorModule.withComponents({
+         components: [StInputDemoComponent]
+      }),
+      FormsModule,
+      ReactiveFormsModule,
+      StFormsModule
+   ]
 })
-export class StFormDemoModule { }
-
+export class StInputDemoModule {}

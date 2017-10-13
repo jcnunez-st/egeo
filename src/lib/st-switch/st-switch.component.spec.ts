@@ -11,7 +11,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { StLabelModule } from './../st-label/st-label.module';
+import { StLabelModule } from './../forms/st-label/st-label.module';
 
 import { StSwitchComponent } from './st-switch.component';
 
