@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StLabelComponent } from './st-label.component';
-import { StTooltipModule } from '../st-tooltip';
+import { StTooltipModule } from '../../st-tooltip';
 
 @Component({
    template: `<label st-label></label>`

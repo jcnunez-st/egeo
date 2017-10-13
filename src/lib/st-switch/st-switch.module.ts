@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StSwitchComponent } from './st-switch.component';
-import { StLabelModule } from './../st-label/st-label.module';
+import { StLabelModule } from './../forms/st-label/st-label.module';
 
 @NgModule({
    imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule],

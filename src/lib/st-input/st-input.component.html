@@ -10,18 +10,34 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-
-<label st-label class="st-input__label" [ngClass]="{error: showError(), active: focus, disabled: disabled}" name="name"
-       [attr.id]="labelQaTag" [attr.title]="contextualHelp">
+<label
+      st-label
+      class="st-input__label"
+      name="name"
+      [attr.id]="labelQaTag"
+      [attr.title]="contextualHelp"
+      [ngClass]="{error: showError(), active: focus, disabled: disabled}">
    {{label}}
 </label>
 
-<input #input class="st-input" (focus)="onFocus($event)" (focusout)="onFocusOut($event)" (blur)="onFocusOut($event)"
-       [formControl]="internalControl"
-       [placeholder]="placeholder"
-       [name]="name" [attr.type]="fieldType" [attr.id]="qaTag" [attr.maxlength]="maxLength" [attr.min]="min"
-       [attr.max]="max"
-       [value]="value" [readonly]="readonly" [ngClass]="{error: showError()}">
+<input
+      #input
+      class="st-input"
+      [attr.id]="qaTag"
+      [attr.max]="max"
+      [attr.maxlength]="maxLength"
+      [attr.min]="min"
+      [attr.type]="fieldType"
+      [formControl]="internalControl"
+      [name]="name"
+      [ngClass]="{error: showError()}"
+      [placeholder]="placeholder"
+      [readonly]="readonly"
+      [value]="value"
+      (blur)="onFocusOut($event)"
+      (focus)="onFocus($event)"
+      (focusout)="onFocusOut($event)">
+
 <div class="st-input-error-layout" *ngIf="showError()">
    <span class="st-input-error-message">{{errorMessage}}</span>
 </div>

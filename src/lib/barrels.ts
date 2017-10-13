@@ -17,15 +17,15 @@ import { StFileButtonModule } from './st-file-button/st-file-button.module';
 import { StFooterModule } from './st-footer/st-footer.module';
 import { StFormDirectiveModule } from './directives/form/form-directives.module';
 import { StFormModule } from './st-form/st-form.module';
+import { StFormsModule } from './forms/index';
 import { StHeaderModule } from './st-header/st-header.module';
 import { StHelpModule } from './st-help/st-help.module';
 import { StHorizontalTabsModule } from './st-horizontal-tabs/st-horizontal-tabs.module';
 import { StInfoBoxModule } from './st-info-box/st-info-box.module';
 import { StInfoCardModule } from './st-info-card/st-info-card.module';
-import { StInputModule } from './st-input/st-input.module';
+import { StInputOldModule } from './st-input/st-input.module';
 import { StItemListModule } from './st-item-list/st-item-list.module';
-import { StLabelModule } from './st-label/index';
-import { StLauncherModule } from './st-launcher/st-launcher.module';
+import { StLabelModule } from './forms/st-label/index';
 import { StModalModule } from './st-modal/st-modal.module';
 import { StPageTitleModule } from './st-page-title/st-page-title.module';
 import { StPaginationModule } from './st-pagination/st-pagination.module';
@@ -59,12 +59,13 @@ export const DECLARATIONS: any[] = [
    StFooterModule,
    StFormDirectiveModule,
    StFormModule,
+   StFormsModule,
    StHeaderModule,
    StHelpModule,
    StHorizontalTabsModule,
    StInfoBoxModule,
    StInfoCardModule,
-   StInputModule,
+   StInputOldModule,
    StItemListModule,
    StLabelModule,
    StLauncherModule,

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StLabelComponent } from './st-label.component';
-import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
+import { StTooltipModule } from '../../st-tooltip/st-tooltip.module';
 
 @NgModule({
    declarations: [StLabelComponent],
@@ -22,5 +22,4 @@ import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
       StTooltipModule
    ]
 })
-
 export class StLabelModule { }

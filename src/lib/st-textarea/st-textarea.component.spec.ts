@@ -16,7 +16,7 @@ import { By } from '@angular/platform-browser';
 import { StTextareaComponent } from './st-textarea.component';
 import { StTextareaError } from './st-textarea.error.model';
 import { StTextareaModule } from './st-textarea.module';
-import { StLabelModule } from '../st-label/st-label.module';
+import { StLabelModule } from '../forms/st-label/st-label.module';
 
 let component: StTextareaComponent;
 let fixture: ComponentFixture<StTextareaComponent>;

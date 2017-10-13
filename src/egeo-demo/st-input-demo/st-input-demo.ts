@@ -13,11 +13,11 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { StInputError } from '@stratio/egeo';
 
 @Component({
-   selector: 'st-input-demo',
+   selector: 'st-input-old-demo',
    templateUrl: 'st-input-demo.html',
    styleUrls: ['./st-input-demo.component.scss']
 })
-export class StInputDemoComponent {
+export class StInputOldDemoComponent {
    public myForm: FormGroup;
    public requiredError: StInputError = {required: 'This field is required'};
 

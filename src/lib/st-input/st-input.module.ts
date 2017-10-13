@@ -12,12 +12,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { StInputComponent } from './st-input.component';
-import { StLabelModule } from '../st-label/st-label.module';
+import { StInputOldComponent } from './st-input.component';
+import { StLabelModule } from '../forms/st-label/st-label.module';
 
 @NgModule({
-   imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule],
-   declarations: [StInputComponent],
-   exports: [StInputComponent]
+   declarations: [StInputOldComponent],
+   exports: [StInputOldComponent],
+   imports: [
+      CommonModule,
+      FormsModule,
+      ReactiveFormsModule,
+      StLabelModule
+   ]
 })
-export class StInputModule { }
+export class StInputOldModule { }

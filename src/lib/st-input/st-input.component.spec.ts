@@ -13,27 +13,27 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { StInputComponent } from './st-input.component';
+import { StInputOldComponent } from './st-input.component';
 import { StInputError } from './st-input.error.model';
-import { StInputModule } from './st-input.module';
-import { StLabelModule } from '../st-label/st-label.module';
+import { StInputOldModule } from './st-input.module';
+import { StLabelModule } from '../forms/st-label/st-label.module';
 
 
-let component: StInputComponent;
-let fixture: ComponentFixture<StInputComponent>;
+let component: StInputOldComponent;
+let fixture: ComponentFixture<StInputOldComponent>;
 let input: HTMLInputElement;
 
-describe('StInputComponent', () => {
+describe('StInputOldComponent', () => {
    beforeEach(async(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StLabelModule],
-         declarations: [StInputComponent]
+         declarations: [StInputOldComponent]
       })
          .compileComponents();  // compile template and css
    }));
 
    beforeEach(() => {
-      fixture = TestBed.createComponent(StInputComponent);
+      fixture = TestBed.createComponent(StInputOldComponent);
       input = fixture.nativeElement.querySelector('input');
       component = fixture.componentInstance;
       component.qaTag = 'test qaTag';
@@ -101,7 +101,7 @@ describe('StInputComponent', () => {
    template: `
       <form [formGroup]="reactiveForm" novalidate autocomplete="off" (ngSubmit)="onSubmitReactiveForm()" class="col-md-6">
          <div class="form-group">
-           <st-input
+           <st-input-old
                   label="Description"
                   placeholder="Module description"
                   [forceValidations]="forceValidations"
@@ -110,7 +110,7 @@ describe('StInputComponent', () => {
                   qaTag="description-input"
                   formControlName="description"
                   [fieldType]=fieldType
-               ></st-input>
+               ></st-input-old>
          </div>
       </form>
       `
@@ -171,10 +171,10 @@ class FormReactiveComponent implements OnInit {
 let reactiveFixture: ComponentFixture<FormReactiveComponent>;
 let reactiveComp: FormReactiveComponent;
 
-describe('StInputComponent in reactive form', () => {
+describe('StInputOldComponent in reactive form', () => {
    beforeEach(async(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StInputModule],
+         imports: [FormsModule, ReactiveFormsModule, StInputOldModule],
          declarations: [FormReactiveComponent]
       })
          .compileComponents();  // compile template and css

@@ -100,7 +100,7 @@ export { StInfoBoxModule } from './st-info-box/st-info-box.module';
 export { StInfoCardModule } from './st-info-card/st-info-card.module';
 
 // Input
-export { StInputModule } from './st-input/st-input.module';
+export { StInputOldModule } from './st-input/st-input.module';
 export {
    StInputError,
    StInputErrorSchema
@@ -242,4 +242,4 @@ export { StDemoGeneratorModule } from './utils/demo-generator/demo-generator.mod
 
 
 /**************************** FULL MODULES *********************************************/
-export * from './st-label/index';
+export * from './forms';

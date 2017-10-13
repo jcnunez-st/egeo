@@ -33,17 +33,17 @@ import { Subscription } from 'rxjs/Subscription';
 import { StInputError } from './st-input.error.model';
 
 @Component({
-   selector: 'st-input',
+   selector: 'st-input-old',
    templateUrl: './st-input.component.html',
    styleUrls: ['./st-input.component.scss'],
    providers: [
-      { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => StInputComponent), multi: true },
-      { provide: NG_VALIDATORS, useExisting: forwardRef(() => StInputComponent), multi: true }
+      { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => StInputOldComponent), multi: true },
+      { provide: NG_VALIDATORS, useExisting: forwardRef(() => StInputOldComponent), multi: true }
    ],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StInputComponent implements ControlValueAccessor, OnChanges, OnInit, OnDestroy {
+export class StInputOldComponent implements ControlValueAccessor, OnChanges, OnInit, OnDestroy {
 
    @Input() placeholder: string = '';
    @Input() name: string = '';

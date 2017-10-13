@@ -49,7 +49,7 @@
                <h2>Generate Trees</h2>
                <div class="row">
                   <div class="col-md-12" style="margin-bottom: 10px;">
-                     <st-input
+                     <st-input-old
                         label="Levels"
                         placeholder="Number of tree levels"
                         [forceValidations]="forceTreeValidations"
@@ -59,10 +59,10 @@
                         qaTag="levels-input"
                         contextualHelp="Number of levels of the tree to generate"
                         formControlName="levels">
-                     </st-input>
+                     </st-input-old>
                   </div>
                   <div class="col-md-12" style="margin-bottom: 10px;">
-                     <st-input
+                     <st-input-old
                         label="Nodes"
                         placeholder="Number of nodes"
                         [forceValidations]="forceTreeValidations"
@@ -72,12 +72,12 @@
                         qaTag="nodes-input"
                         contextualHelp="Number of nodes of the tree to generate"
                         formControlName="nodes">
-                     </st-input>
+                     </st-input-old>
                   </div>
                </div>
                <div class="row">
                   <div class="col-md-12" style="margin-bottom: 10px;">
-                     <st-input
+                     <st-input-old
                         label="Max Level"
                         placeholder="Maximum tree level"
                         [forceValidations]="forceTreeValidations"
@@ -87,10 +87,10 @@
                         qaTag="max-input"
                         contextualHelp="Maximum of tree levels to display"
                         formControlName="max">
-                     </st-input>
+                     </st-input-old>
                   </div>
                   <div class="col-md-12" style="margin-bottom: 10px;">
-                     <st-input
+                     <st-input-old
                         label="Node name"
                         placeholder="Name of nodes"
                         [forceValidations]="forceTreeValidations"
@@ -100,7 +100,7 @@
                         qaTag="name-input"
                         contextualHelp="Name of nodes of the tree to generate"
                         formControlName="name">
-                     </st-input>
+                     </st-input-old>
                   </div>
                </div>
                <button class="button button-primary">
@@ -114,7 +114,7 @@
                <h2>Update Nodes</h2>
                <div class="row">
                   <div class="col-md-12" style="margin-bottom: 10px;">
-                     <st-input
+                     <st-input-old
                         label="New name"
                         placeholder="Node name"
                         [forceValidations]="forceNodeValidations"
@@ -124,10 +124,10 @@
                         qaTag="node-name-input"
                         contextualHelp="Name to update in the node tree"
                         formControlName="name">
-                     </st-input>
+                     </st-input-old>
                   </div>
                   <div class="col-md-12" style="margin-bottom: 10px;">
-                     <st-input
+                     <st-input-old
                         label="Node path"
                         placeholder="Path of node"
                         [forceValidations]="forceNodeValidations"
@@ -137,7 +137,7 @@
                         qaTag="path-input"
                         contextualHelp="Path of node to update in the trees"
                         formControlName="path">
-                     </st-input>
+                     </st-input-old>
                   </div>
                </div>
                <button class="button button-primary">
