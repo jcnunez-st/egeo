@@ -12,8 +12,10 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { StFormBaseComponent } from '../st-form-base/st-form-base.component';
+import { CreateProvider } from '../st-form-base/st-form-base.provider';
 
 @Component({
+   providers: [CreateProvider(StInputComponent)],
    selector: 'st-input',
    styleUrls: ['./st-input.component.scss'],
    templateUrl: './st-input.component.html'

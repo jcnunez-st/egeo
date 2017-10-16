@@ -8,11 +8,11 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { FormControl, ValidatorFn } from '@angular/forms';
+import { Component, ElementRef, ExistingProvider, HostBinding, Input } from '@angular/core';
+import { ControlValueAccessor, FormControl, ValidatorFn } from '@angular/forms';
 
 @Component({})
-export class StFormBaseComponent {
+export class StFormBaseComponent implements ControlValueAccessor {
 
    @HostBinding('class.active') classActive: boolean = false;
    @HostBinding('class.disabled') classDisabled: boolean = false;
@@ -29,6 +29,17 @@ export class StFormBaseComponent {
 
    private host: any;
 
+   private _value: any;
+   get value(): any {
+      return this._value;
+   }
+   set value(value: any) {
+      if (value !== this._value) {
+         this._value = value;
+         this.onChange(value);
+      }
+   }
+
    constructor(private el: ElementRef) {
       this.control =  new FormControl();
       this.host = this.el.nativeElement;
@@ -36,5 +47,22 @@ export class StFormBaseComponent {
 
    getId(sufix?: string): string {
       return this.host.id ? this.host.id + sufix : undefined;
+   }
+
+   onChange = (_: any) => {};
+
+   onTouched = () => {};
+
+   registerOnChange(fn: (_: any) => void): void {
+      this.onChange = fn;
+   }
+
+   registerOnTouched(fn: () => void): void {
+      this.onTouched = fn;
+   }
+
+   writeValue(value: any): void {
+      this._value = value;
+      this.onChange(value);
    }
 }
