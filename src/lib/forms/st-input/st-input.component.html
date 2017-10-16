@@ -22,11 +22,12 @@
 <input
       #input
       class="st-input"
+      (input)="onChange($event.target.value)"
       [attr.id]="getId('-input')"
       [attr.name]="name"
       [attr.placeholder]="placeholder"
       [attr.required]="required"
-      [(ngModel)]="model"
-      [formControl]="control">
+      [formControl]="control"
+      [(ngModel)]="value">
 
 <st-error></st-error>

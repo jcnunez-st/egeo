@@ -8,6 +8,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+import { ExistingProvider, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export { StFormBaseComponent } from './st-form-base.component';
-export { CreateProvider } from './st-form-base.provider';
+export function CreateProvider(type: any): ExistingProvider {
+   return {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => type),
+      multi: true
+   };
+}

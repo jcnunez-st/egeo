@@ -32,7 +32,7 @@ export class StInputDemoComponent {
       });
 
       this.mdModel = '';
-      this.tdStInputModel = '';
+      this.tdStInputModel = 'init value';
       this.tdModel = '';
    }
 
