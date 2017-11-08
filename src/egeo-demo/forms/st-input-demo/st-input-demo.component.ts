@@ -19,21 +19,16 @@ import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angula
 export class StInputDemoComponent {
    demoForm: FormGroup;
 
-   mdInputControl: FormControl;
    mdModel: string;
-
    tdModel: string;
-   tdStInputModel: string;
 
    constructor() {
-      this.mdInputControl = new FormControl();
-      this.demoForm = new FormGroup({
-         model1: this.mdInputControl
-      });
+      this.mdModel = 'init value model';
+      this.tdModel = 'init value template';
 
-      this.mdModel = '';
-      this.tdStInputModel = 'init value';
-      this.tdModel = '';
+      this.demoForm = new FormGroup({
+         mdInput: new FormControl(this.mdModel)
+      });
    }
 
    onSubmit(form: NgForm): void {

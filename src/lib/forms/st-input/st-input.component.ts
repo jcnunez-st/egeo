@@ -9,7 +9,6 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 import { StFormBaseComponent } from '../st-form-base/st-form-base.component';
 import { CreateProvider } from '../st-form-base/st-form-base.provider';
@@ -21,4 +20,4 @@ import { CreateProvider } from '../st-form-base/st-form-base.provider';
    templateUrl: './st-input.component.html'
 })
 
-export class StInputComponent extends StFormBaseComponent {}
+export class StInputComponent extends StFormBaseComponent { }
