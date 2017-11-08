@@ -14,16 +14,16 @@
    <header>Model Driven Form</header>
    <form
          #mdForm="ngForm"
+         [formGroup]="demoForm"
          (ngSubmit)="onSubmit(mdForm)">
       <st-input
             required
+            formControlName="mdInput"
             id="mdInput"
-            label="This is the label"
+            label="Model Driven st-input"
             name="mdInput"
             placeholder="This is the placeholder"
-            tooltip="This is the tooltip"
-            [control]="mdInputControl"
-            [formGroup]="demoForm">
+            tooltip="This is the tooltip">
       </st-input>
       <button class="button button-primary" type="submit">Send</button>
    </form>
@@ -35,23 +35,14 @@
          #tdForm="ngForm"
          (ngSubmit)="onSubmit(tdForm)">
       <st-input
-            required
+            autofocus
             id="tdStInput"
             label="Template Driven st-input"
-            [(ngModel)]="tdStInputModel"
-            name="tdStInput"
+            [(ngModel)]="tdModel"
+            name="tdInput"
             placeholder="Template Driven st-input placeholder"
             tooltip="Template Driven st-input tooltip">
       </st-input>
-      <div>
-         <input
-               [(ngModel)]="tdModel"
-               id="tdNativeInput"
-               label="Template Driven native input"
-               name="tdNativeInput"
-               placeholder="Template Driven native input placeholder"
-               tooltip="Template Driven native input tooltip">
-      </div>
       <button class="button button-primary" type="submit">Send</button>
    </form>
 </article>
