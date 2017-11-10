@@ -22,7 +22,6 @@ import { StHorizontalTabsDemoModule } from './st-horizontal-tabs-demo/st-horizon
 import { StInfoBoxDemoModule } from './st-info-box-demo/st-info-box-demo.module';
 import { StInfoCardDemoModule } from './st-info-card-demo/st-info-card-demo.module';
 import { StInputDemoModule } from './forms/st-input-demo/st-input-demo.module';
-import { StInputOldDemoModule } from './st-input-demo/st-input-demo.module';
 import { StItemListDemoModule } from './st-item-list-demo/st-item-list-demo.module';
 import { StLabelDemoModule } from './st-label-demo/st-label-demo.module';
 import { StLauncherDemoModule } from './st-launcher-demo/st-launcher-demo.module';
@@ -66,7 +65,6 @@ export const EGEO_DEMO_MODULES: any[] = [
    StInfoBoxDemoModule,
    StInfoCardDemoModule,
    StInputDemoModule,
-   StInputOldDemoModule,
    StItemListDemoModule,
    StLabelDemoModule,
    StLauncherDemoModule,
