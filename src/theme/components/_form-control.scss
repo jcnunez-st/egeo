@@ -11,23 +11,28 @@
 @import '../constants/colors';
 @import '../constants/fonts';
 
-%st-form-control {
+.st-form-control {
+   background-color: $neutral-00;
+   border: 1px solid $neutral-07;
+   border-radius: 4px;
+   color: $action-secondary-07;
    font-family: $egeo-nunito-sans;
    font-size: $egeo-font-size-xsmall;
    line-height: $egeo-line-height-xsmall;
-   color: $action-secondary-07;
-   background-color: $neutral-00;
-   border: 1px solid $neutral-07;
-   padding: 10px 17px 10px 15px;
-   border-radius: 4px;
-   vertical-align: bottom;
    outline: none;
+   padding: 10px 15px;
+   vertical-align: bottom;
    width: 100%;
-   input {
-      min-height: $egeo-line-height-xsmall;
-   }
+
    &::placeholder {
       color: $neutral-07;
+   }
+
+   &:disabled {
+      border-color: $neutral-05;
+      &::placeholder {
+         color: $neutral-05;
+      }
    }
 
    &:focus {
@@ -36,16 +41,4 @@
          color: transparent;
       }
    }
-
-   &:disabled {
-      border-color: $neutral-05;
-
-      &::placeholder {
-         color: $neutral-05;
-      }
-   }
-}
-
-%st-form-control.error {
-   border-color: $input-field-error;
 }

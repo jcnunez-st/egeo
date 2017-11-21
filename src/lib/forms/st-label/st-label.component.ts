@@ -10,7 +10,7 @@
  */
 import { Component, HostBinding } from '@angular/core';
 
-import { StTooltipComponent } from '../../st-tooltip';
+import { StTooltipComponent } from '../../st-tooltip/st-tooltip.component';
 
 @Component({
    selector: '[st-label]',

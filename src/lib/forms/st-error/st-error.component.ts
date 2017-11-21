@@ -8,11 +8,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
    selector: 'st-error',
    styleUrls: ['./st-error.component.scss'],
    templateUrl: './st-error.component.html'
 })
-export class StErrorComponent {}
+export class StErrorComponent {
+   @Input() message: string;
+}

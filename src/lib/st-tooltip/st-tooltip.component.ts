@@ -50,7 +50,7 @@ export class StTooltipComponent {
       this.classTooltipOn = this.showOnClick && this.title && this.el.nativeElement.contains(event.target);
    }
 
-   constructor(private el: ElementRef) {
+   constructor(protected el: ElementRef) {
       this.classTooltip = false;
       this.classTooltipOn = false;
       this.showOnClick = false;

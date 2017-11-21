@@ -8,5 +8,5 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-export { StInputComponent } from './st-input.component';
-export { StInputModule } from './st-input.module';
+export * from './st-input.component';
+export * from './st-input.module';

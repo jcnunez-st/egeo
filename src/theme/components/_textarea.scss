@@ -10,11 +10,9 @@
  */
 @import '../constants/colors';
 @import '../constants/fonts';
-@import '../utils/forms';
 
 .st-textarea {
-    @extend %st-form-control;
- }
+}
 
 .st-textarea-error-message {
    font-size: $egeo-font-size-xxxsmall;

@@ -19,7 +19,7 @@ import {
 } from '@angular/forms';
 
 import { StEgeo, StRequired } from '../../decorators/require-decorators';
-import { StInputError } from '../../st-input/st-input.error.model';
+import { StInputError } from '../../forms/st-error/st-input.error.model';
 
 @Component({
    selector: 'st-form-field',

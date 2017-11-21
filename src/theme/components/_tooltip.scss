@@ -12,7 +12,6 @@
 
 .st-tooltip,
 .st-tooltip-on {
-
    &:before {
       border: 1px solid $neutral-06;
       border-radius: 3px;
@@ -20,6 +19,7 @@
       box-shadow: 0 3px 2px 0 rgba($neutral-13, 0.07);
       color: $neutral-09;
       font-size: $egeo-font-size-xxxsmall;
+      font-family: $egeo-nunito-sans;
       padding: 4px 8px;
    }
 

@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import {TranslateableElement} from '../utils/egeo-resolver/egeo-resolve-model';
+import {TranslateableElement} from '../../utils/egeo-resolver/egeo-resolve-model';
 
 export interface StError {
    generic?: string;

@@ -9,6 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import {
+   ChangeDetectorRef,
    Component,
    ElementRef,
    EventEmitter,
@@ -20,7 +21,7 @@ import {
    Renderer2,
    ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, ValidatorFn } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
    selector: 'st-form-base',
@@ -33,13 +34,13 @@ export class StFormBaseComponent implements ControlValueAccessor, OnInit {
    @Input() placeholder: string;
    @Input() tooltip: string;
    @Input() type: string;
-   @Input() validation: ValidatorFn[];
 
    @Input() set autofocus(autofocus: any) {
       this._autofocus = autofocus !== undefined;
    }
    @Input() set disabled(disabled: any) {
       this._disabled = disabled;
+      this.classDisabled = disabled !== undefined;
       this.renderer.setProperty(this.formElementRef.nativeElement, 'disabled', disabled);
    }
    @Input() set required(required: any) {
@@ -53,6 +54,7 @@ export class StFormBaseComponent implements ControlValueAccessor, OnInit {
    @HostBinding('class.active') classActive: boolean;
    @HostBinding('class.disabled') classDisabled: boolean;
    @HostBinding('class.error') classError: boolean;
+   @HostBinding('class.st-form-base') classStFormBase: boolean;
 
    @ViewChild('formElementRef') formElementRef: ElementRef;
 
@@ -83,19 +85,21 @@ export class StFormBaseComponent implements ControlValueAccessor, OnInit {
    }
 
 
-   constructor(protected elementRef: ElementRef, protected renderer: Renderer2) {
+   constructor(protected cdr: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
       this.blur = new EventEmitter();
       this.focus = new EventEmitter();
 
       this.classActive = false;
       this.classDisabled = false;
       this.classError = false;
+      this.classStFormBase = true;
 
       this._onChange = (_: any) => {};
       this._onTouched = () => {};
    }
 
    ngOnInit(): void {
+      this.cdr.detectChanges();
       if (this._autofocus) {
          this.formElementRef.nativeElement.focus();
       }
@@ -106,10 +110,12 @@ export class StFormBaseComponent implements ControlValueAccessor, OnInit {
    }
 
    onBlur(event: FocusEvent): void {
+      this.classActive = false;
       this.blur.emit(event);
    }
 
    onFocus(event: FocusEvent): void {
+      this.classActive = true;
       this.focus.emit(event);
    }
 

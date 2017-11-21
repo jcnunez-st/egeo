@@ -9,5 +9,5 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-export { StFormBaseComponent } from './st-form-base.component';
-export { CreateProvider } from './st-form-base.provider';
+export * from './st-form-base.component';
+export * from './st-form-base.provider';

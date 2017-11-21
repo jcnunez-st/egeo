@@ -15,7 +15,6 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { JSON_SCHEMA } from '../spec/resources/json-schema';
 import { StFormDirectiveModule } from '../../directives/form/form-directives.module';
 import { StFormFieldComponent } from './st-form-field.component';
-import { StInputOldModule } from '../../st-input/st-input.module';
 import { StSwitchModule } from '../../st-switch/st-switch.module';
 
 let component: StFormFieldComponent;
@@ -26,7 +25,7 @@ describe('StFormFieldComponent', () => {
 
    beforeEach(async(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StInputOldModule, StSwitchModule, PipesModule, StFormDirectiveModule],
+         imports: [FormsModule, ReactiveFormsModule, StSwitchModule, PipesModule, StFormDirectiveModule],
          declarations: [StFormFieldComponent]
       })
          .compileComponents();  // compile template and css

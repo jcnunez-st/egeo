@@ -11,45 +11,33 @@
 @import '../constants/colors';
 @import '../constants/fonts';
 
-.st-label {
-   font-family: $egeo-nunito-sans-bold;
-   font-size: $egeo-font-size-xxsmall;
-   line-height: $egeo-line-height-xxsmall;
-   margin-bottom: 1px;
-}
-
-.st-form-field {
+.st-form-base {
    .st-label {
-      color: $neutral-08;
-      &:focus {
-         color: $action-primary-default;
+      display: flex;
+      margin-bottom: 4px;
+      width: 100%;
+   }
+
+   &:not(.ng-invalid) {
+      &.active {
+         .st-label {
+            color: $action-primary-default;
+         }
       }
       &[disabled] {
-         color: $neutral-06;
+         .st-label {
+            color: $neutral-06;
+            pointer-events: none;
+         }
       }
    }
 
-   input,
-   text-area {
-      &:focus {
-         border-color: $action-primary-default;
-      }
-      &:disabled {
-         border-color: $neutral-06;
-      }
-      &:disabled:placeholder {
-         color: $neutral-05;
-      }
-   }
-
-   &.ng-invalid:not(.ng-pristine) {
+   &.ng-invalid.ng-touched {
       .st-label {
          color: $status-critical-default;
       }
-      input,
-      text-area {
+      .st-form-control {
          border-color: $status-critical-default;
-
       }
    }
 }

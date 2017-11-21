@@ -367,7 +367,7 @@ describe('StSelectComponent', () => {
             [options]="options"
             [errorMessage]="errorMessage"
             [selected]="selected"
-            class="st-form-field">
+            class="st-form-base">
          </st-select>
       </form>
       `
@@ -479,7 +479,7 @@ describe('StSelectComponent', () => {
       <form #templateDrivenForm="ngForm" novalidate autocomplete="off">
          <st-select #select
             stCheckValidations
-            class="st-form-field"
+            class="st-form-base"
             id="test"
             placeholder="placeholder"
             name="model"

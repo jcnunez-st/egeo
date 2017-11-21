@@ -8,5 +8,5 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-export { StLabelComponent } from './st-label.component';
-export { StLabelModule } from './st-label.module';
+export * from './st-label.component';
+export * from './st-label.module';

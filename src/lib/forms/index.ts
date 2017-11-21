@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-export { StFormsModule } from './forms.module';
+export * from './forms.module';
 
 export * from './st-error';
 export * from './st-form-base';

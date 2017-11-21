@@ -12,7 +12,6 @@
 -->
 <label
       st-label
-      class="st-input__label"
       [attr.for]="formElementRef.id"
       [attr.id]="idSuffix('-label')"
       [attr.title]="tooltip">
@@ -21,14 +20,13 @@
 
 <input
       #formElementRef
-      class="st-input"
+      class="st-input st-form-control"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"
+      (keyup)="onChange($event)"
       [attr.id]="idSuffix('-input')"
       [attr.name]="name"
       [attr.placeholder]="placeholder"
       [attr.required]="required"
       [attr.type]="type"
       [value]="value">
-
-<st-error></st-error>

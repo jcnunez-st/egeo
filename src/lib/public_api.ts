@@ -99,13 +99,6 @@ export { StInfoBoxModule } from './st-info-box/st-info-box.module';
 // Info card
 export { StInfoCardModule } from './st-info-card/st-info-card.module';
 
-// Input
-export { StInputOldModule } from './st-input/st-input.module';
-export {
-   StInputError,
-   StInputErrorSchema
-} from './st-input/st-input.error.model';
-
 // Item List
 export {
    StItemListModule
@@ -241,5 +234,16 @@ export { StPopOffset, StPopPlacement } from './st-pop/st-pop.model';
 export { StDemoGeneratorModule } from './utils/demo-generator/demo-generator.module';
 
 
-/**************************** FULL MODULES *********************************************/
-export * from './forms';
+/**************************** FORMS *********************************************/
+export { StFormsModule } from './forms/forms.module';
+export { StFormBaseComponent } from './forms/st-form-base/st-form-base.component';
+// export { StErrorComponent } from './forms/st-error/st-error.component';
+export { StErrorModule } from './forms/st-error/st-error.module';
+export { StInputComponent } from './forms/st-input/st-input.component';
+export { StInputModule } from './forms/st-input/st-input.module';
+export { StLabelComponent } from './forms/st-label/st-label.component';
+export { StLabelModule } from './forms/st-label/st-label.module';
+export {
+   StInputError,
+   StInputErrorSchema
+} from './forms/st-error/st-input.error.model';

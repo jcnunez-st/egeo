@@ -15,7 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StFormComponent } from './st-form.component';
 import { StFormFieldComponent } from './st-form-field/st-form-field.component';
 import { PipesModule } from '../pipes/pipes.module';
-import { StInputOldModule } from '../st-input/st-input.module';
 import { StFormDirectiveModule } from '../directives/form/form-directives.module';
 import { StSwitchModule } from '../st-switch/st-switch.module';
 
@@ -33,7 +32,6 @@ import { StSwitchModule } from '../st-switch/st-switch.module';
       PipesModule,
       ReactiveFormsModule,
       StFormDirectiveModule,
-      StInputOldModule,
       StSwitchModule
    ]
 })

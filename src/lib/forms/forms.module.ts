@@ -11,19 +11,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { StErrorModule } from './st-error';
-import { StInputModule } from './st-input';
-import { StLabelModule } from './st-label';
+// import { StErrorModule } from './st-error/st-error.module';
+import { StInputModule } from './st-input/st-input.module';
+import { StLabelModule } from './st-label/st-label.module';
+import { StFormBaseComponent } from './st-form-base/st-form-base.component';
 
 @NgModule({
+   declarations: [
+      StFormBaseComponent
+   ],
    exports: [
-      StErrorModule,
+      // StErrorModule,
+      StFormBaseComponent,
       StInputModule,
       StLabelModule
    ],
    imports: [
       CommonModule,
-      StErrorModule,
+      // StErrorModule,
       StInputModule,
       StLabelModule
    ]

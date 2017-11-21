@@ -8,6 +8,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+import { StFormsModule } from './forms/forms.module';
+// import { StErrorModule } from './forms/st-error/st-error.module';
+import { StInputModule } from './forms/st-input/st-input.module';
+import { StLabelModule } from './forms/st-label/st-label.module';
 import { PipesModule } from './pipes/pipes.module';
 import { StAlertsModule } from './st-alerts/st-alerts.module';
 import { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
@@ -17,15 +21,13 @@ import { StFileButtonModule } from './st-file-button/st-file-button.module';
 import { StFooterModule } from './st-footer/st-footer.module';
 import { StFormDirectiveModule } from './directives/form/form-directives.module';
 import { StFormModule } from './st-form/st-form.module';
-import { StFormsModule } from './forms/index';
 import { StHeaderModule } from './st-header/st-header.module';
 import { StHelpModule } from './st-help/st-help.module';
 import { StHorizontalTabsModule } from './st-horizontal-tabs/st-horizontal-tabs.module';
 import { StInfoBoxModule } from './st-info-box/st-info-box.module';
 import { StInfoCardModule } from './st-info-card/st-info-card.module';
-import { StInputOldModule } from './st-input/st-input.module';
 import { StItemListModule } from './st-item-list/st-item-list.module';
-import { StLabelModule } from './forms/st-label/index';
+import { StLauncherModule } from './st-launcher/st-launcher.module';
 import { StModalModule } from './st-modal/st-modal.module';
 import { StPageTitleModule } from './st-page-title/st-page-title.module';
 import { StPaginationModule } from './st-pagination/st-pagination.module';
@@ -55,6 +57,7 @@ export const DECLARATIONS: any[] = [
    StBreadcrumbsModule,
    StCheckboxModule,
    StDropdownMenuModule,
+   // StErrorModule,
    StFileButtonModule,
    StFooterModule,
    StFormDirectiveModule,
@@ -65,7 +68,7 @@ export const DECLARATIONS: any[] = [
    StHorizontalTabsModule,
    StInfoBoxModule,
    StInfoCardModule,
-   StInputOldModule,
+   StInputModule,
    StItemListModule,
    StLabelModule,
    StLauncherModule,

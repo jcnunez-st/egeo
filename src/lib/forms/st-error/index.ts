@@ -8,5 +8,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-export { StErrorComponent } from './st-error.component';
-export { StErrorModule } from './st-error.module';
+export * from './st-error.component';
+export * from './st-error.module';
+export * from './st-input.error.model';
