@@ -86,6 +86,7 @@ export class StFormListComponent implements ControlValueAccessor {
    }
 
    set value(value: any) {
+      console.log('EGEO: ', value);
       if (value !== this._value) {
          this._value = _cloneDeep(value);
          this.updateForm();
@@ -199,8 +200,8 @@ export class StFormListComponent implements ControlValueAccessor {
    }
 
    private updateForm(): void {
-      this.formArray.reset();
-      this.formArray.controls = [];
+      this.formArray = new FormArray([]);
+
 
       if (this._value) {
          for (let i = 0; i < this._value.length; ++i) {
