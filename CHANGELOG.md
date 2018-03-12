@@ -1,5 +1,12 @@
 # Changelog
 
+## 8.5.1 (upcoming)
+
+**Fixed bugs:**
+
+* st-form-list: Fixed the formArray refresh
+
+
 ## 8.5.0 (March 07, 2018)
 
 **New features:**

@@ -199,8 +199,7 @@ export class StFormListComponent implements ControlValueAccessor {
    }
 
    private updateForm(): void {
-      this.formArray.reset();
-      this.formArray.controls = [];
+      this.formArray = new FormArray([]);
 
       if (this._value) {
          for (let i = 0; i < this._value.length; ++i) {
