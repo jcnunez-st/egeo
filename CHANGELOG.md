@@ -2,7 +2,9 @@
 
 ## 9.0.0 (upcoming)
 
-* Pending changelog
+**Breaking changes:**
+
+* st-tree: Completely refactored
 
 ## 8.9.0 (April 06, 2018)
 
