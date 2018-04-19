@@ -8,261 +8,177 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { DebugElement, SimpleChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { cloneDeep as _cloneDeep } from 'lodash';
 
 
 import { StTreeComponent } from './st-tree.component';
 import { StTreeNode, StTreeEvent } from './st-tree.model';
 
+const mockId: string = 'treeId';
 const mockTree: StTreeNode = {
-   name: 'hdfs',
+   name: 'root',
    icon: 'icon-folder',
-   expanded: true,
    children: [
-      { name: 'folder A', icon: 'icon-folder' },
-      {
-         name: 'folder B', icon: 'icon-folder', expanded: true, children: [
-            {
-               name: 'folder B.0', icon: 'icon-folder', children: [
-                  { name: 'folder B.0.0', icon: 'icon-file' },
-                  { name: 'folder B.0.1', icon: 'icon-file' }
-               ]
-            },
-            {
-               name: 'folder B.1', icon: 'icon-folder', expanded: true, children: [
-                  { name: 'folder B.1.0', icon: 'icon-file' },
-                  { name: 'folder B.1.1', icon: 'icon-file' }
-               ]
-            },
-            { name: 'folder B.2', icon: 'icon-file' },
-            { name: 'folder B.3', icon: 'icon-file' },
-            {
-               name: 'folder B.4', icon: 'icon-folder', expanded: true, children: [
-                  { name: 'folder B.4.0', icon: 'icon-file' },
-                  { name: 'folder B.4.1', icon: 'icon-file' },
-                  { name: 'folder B.4.2', icon: 'icon-file' },
-                  { name: 'folder B.4.3', icon: 'icon-file' },
-                  { name: 'folder B.4.4', icon: 'icon-file' }
-               ]
-            }
-         ]
-      },
-      { name: 'folder C', icon: 'icon-file' },
-      { name: 'folder D', icon: 'icon-folder' }
+      { name: 'node 0', icon: 'icon-folder' },
+      { name: 'node 1', icon: 'icon-folder', children: [
+         { name: 'node 1.0', icon: 'icon-folder', children: [
+            { name: 'node 1.0.0', icon: 'icon-file' },
+            { name: 'node 1.0.1', icon: 'icon-file' }
+         ]},
+         { name: 'node 1.1', icon: 'icon-file' }
+      ]},
+      { name: 'node 2', icon: 'icon-file' }
    ]
 };
 
+@Component({
+   template:
+      `<st-tree
+            [attr.id]="id"
+            [collapseChildrenBranch]="collapseChildren"
+            [tree]="tree"
+            (selectNode)="onSelectNode($event)"
+            (toggleNode)="onToggleNode($event)">
+      </st-tree>`
+})
+class TestHostComponent {
+   collapseChildren: boolean = true;
+   id: string = mockId;
+   tree: StTreeNode = mockTree;
+   response: StTreeEvent;
+
+   onSelectNode(event: StTreeEvent): void {
+      this.response = event;
+   }
+
+   onToggleNode(event: StTreeEvent): void {
+      this.response = event;
+   }
+}
+
+let component: StTreeComponent;
+let element: HTMLElement;
 let fixture: ComponentFixture<StTreeComponent>;
 
 describe('StTreeComponent', () => {
 
-   let comp: StTreeComponent;
-
    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-         declarations: [StTreeComponent, StTreeComponent]
+      TestBed
+      .configureTestingModule({
+         declarations: [
+            StTreeComponent,
+            TestHostComponent
+         ]
       })
-         .compileComponents();  // compile template and css
+      .compileComponents();
    }));
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTreeComponent);
-      comp = fixture.componentInstance;
+      component = fixture.componentInstance;
+      component.tree = mockTree;
+      fixture.detectChanges();
    });
 
 
    it('should init correctly', () => {
-      comp.tree = mockTree;
-      fixture.detectChanges();
-
-      expect(comp.path).toEqual([]);
-
-      // Tree and mockTree are the same, internalTree its equal but not the same
-      expect(comp.tree).toEqual(mockTree);
+      expect(component.node).toEqual(component.tree);
+      expect((component as any)._tree).toEqual(component.tree);
    });
 
-   it('should change tree structure and reflect change', () => {
-      comp.tree = mockTree;
+   it('should be updated only if model changes', () => {
+      let previousTree = (component as any)._tree;
+      let newTree = _cloneDeep(mockTree);
+      component.tree = newTree;
       fixture.detectChanges();
-
-      expect((comp as any)._tree).toEqual(mockTree);
-      expect(comp.node).toEqual(mockTree);
-
-      let newTree: StTreeNode = { name: 'hdfs', icon: 'icon-folder' };
-      comp.tree = newTree;
-
-      expect((comp as any)._tree).toEqual(newTree);
-      expect(comp.node).toEqual(newTree);
+      expect(component.tree).not.toBe(newTree);
+      expect(component.tree).toBe(previousTree);
    });
 
-
-   it('should collapse node without children and collapseChildrenBranch true', () => {
-      let node: StTreeNode = { name: 'name', icon: '' };
-      comp.collapseChildrenBranch = true;
-      comp.tree = { name: 'root', icon: '', children: [node] };
+   it('should show children nodes only when node has property expanded=true', () => {
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).toBeNull();
+      let expandedTree = _cloneDeep(mockTree);
+      expandedTree.expanded = true;
+      component.tree = expandedTree;
       fixture.detectChanges();
-
-      let responseFunction = jasmine.createSpy('response');
-      comp.toggleNode.subscribe(responseFunction);
-      let nodeToSend: StTreeNode = (comp as any)._tree.children[0];
-      nodeToSend.expanded = false;
-      let change: StTreeEvent = { node: nodeToSend, target: [0] };
-
-      comp.onToggleNode(change);
-
-      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
-      expect(responseFunction).toHaveBeenCalled();
-      expect(responseFunction).toHaveBeenCalledWith(change);
-
-      comp.toggleNode.unsubscribe();
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).not.toBeNull();
    });
 
-   it('should collapse node with children collapsed and collapseChildrenBranch true', () => {
-      let node: StTreeNode = { name: 'name', icon: '', expanded: true, children: [{ name: 'child1', icon: '' }] };
-      comp.tree = { name: 'root', icon: '', children: [node] };
-      comp.collapseChildrenBranch = true;
+   it('should expand node when click on toggle button of a collapsed node', () => {
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).toBeNull();
+      let output: StTreeEvent;
+      component.toggleNode.subscribe((event: StTreeEvent) => output = event);
+      element = fixture.nativeElement.querySelector('.button');
+      element.click();
       fixture.detectChanges();
-
-      let responseFunction = jasmine.createSpy('response');
-      comp.toggleNode.subscribe(responseFunction);
-      let nodeToSend: StTreeNode = (comp as any)._tree.children[0];
-      nodeToSend.expanded = false;
-      let change: StTreeEvent = { node: nodeToSend, target: [0] };
-
-      comp.onToggleNode(change);
-
-      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
-      expect(responseFunction).toHaveBeenCalled();
-      expect(responseFunction).toHaveBeenCalledTimes(1);
-      expect(responseFunction).toHaveBeenCalledWith(change);
-
-      comp.toggleNode.unsubscribe();
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).not.toBeNull();
+      expect(output.tree.expanded).toBeTruthy();
    });
 
-   it('should collapse node without children and collapseChildrenBranch false', () => {
-      let node: StTreeNode = { name: 'name', icon: '' };
-      comp.collapseChildrenBranch = false;
-      comp.tree = { name: 'root', icon: '', children: [node] };
+   it('should expand node when double click on node name of a collapsed node', () => {
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).toBeNull();
+      let output: StTreeEvent;
+      component.toggleNode.subscribe((event: StTreeEvent) => output = event);
+      element = fixture.nativeElement.querySelector('.name');
+      element.dispatchEvent(new Event('dblclick'));
       fixture.detectChanges();
-
-      let responseFunction = jasmine.createSpy('response');
-      comp.toggleNode.subscribe(responseFunction);
-      let nodeToSend: StTreeNode = (comp as any)._tree.children[0];
-      nodeToSend.expanded = false;
-      let change: StTreeEvent = { node: nodeToSend, target: [0] };
-
-      comp.onToggleNode(change);
-
-      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
-      expect(responseFunction).toHaveBeenCalled();
-      expect(responseFunction).toHaveBeenCalledWith(change);
-
-      comp.toggleNode.unsubscribe();
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).not.toBeNull();
+      expect(output.tree.expanded).toBeTruthy();
    });
 
-   it('should collapse node with children collapsed and collapseChildrenBranch false', () => {
-      let node: StTreeNode = { name: 'name', icon: '', expanded: true, children: [{ name: 'child1', icon: '' }] };
-      comp.tree = { name: 'root', icon: '', children: [node] };
-      comp.collapseChildrenBranch = false;
+   it('should collapse node when click on toggle button of an expanded node', () => {
+      let expandedTree = _cloneDeep(mockTree);
+      expandedTree.expanded = true;
+      component.tree = expandedTree;
       fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).not.toBeNull();
 
-      let responseFunction = jasmine.createSpy('response');
-      comp.toggleNode.subscribe(responseFunction);
-      let nodeToSend: StTreeNode = (comp as any)._tree.children[0];
-      nodeToSend.expanded = false;
-      let change: StTreeEvent = { node: nodeToSend, target: [0] };
-
-      comp.onToggleNode(change);
-
-      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
-      expect(responseFunction).toHaveBeenCalled();
-      expect(responseFunction).toHaveBeenCalledTimes(1);
-      expect(responseFunction).toHaveBeenCalledWith(change);
-
-      comp.toggleNode.unsubscribe();
+      let output: StTreeEvent;
+      component.toggleNode.subscribe((event: StTreeEvent) => output = event);
+      element = fixture.nativeElement.querySelector('.button');
+      element.click();
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('.sth-tree-children')).toBeNull();
+      expect(output.tree.expanded).toBeFalsy();
    });
 
-   it('should collapse node with children expanded and collapseChildrenBranch false', () => {
-      let node: StTreeNode = { name: 'name', icon: '', expanded: true, children: [{ name: 'child1', icon: '', expanded: true }] };
-      comp.tree = { name: 'root', icon: '', children: [node] };
-      comp.collapseChildrenBranch = false;
+   it('should collapse all nodes when collapseChildrenBranch=true and click on toggle button of an expanded node', () => {
+      component.collapseChildrenBranch = true;
+      component.tree = {
+         name: 'root',
+         icon: 'icon-folder',
+         expanded: true,
+         children: [
+            { name: 'node 0', icon: 'icon-folder', expanded: true },
+            { name: 'node 1', icon: 'icon-folder', expanded: true, children: [
+               { name: 'node 1.0', icon: 'icon-folder', expanded: true, children: [
+                  { name: 'node 1.0.0', icon: 'icon-file', expanded: true },
+                  { name: 'node 1.0.1', icon: 'icon-file', expanded: true }
+               ]},
+               { name: 'node 1.1', icon: 'icon-file', expanded: true }
+            ]},
+            { name: 'node 2', icon: 'icon-file', expanded: true }
+         ]
+      };
       fixture.detectChanges();
 
-      let responseFunction = jasmine.createSpy('response');
-      comp.toggleNode.subscribe(responseFunction);
-      let nodeToSend: StTreeNode = (comp as any)._tree.children[0];
-      nodeToSend.expanded = false;
-      let change: StTreeEvent = { node: nodeToSend, target: [0] };
-
-      comp.onToggleNode(change);
-
-      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
-      expect((comp as any)._tree.children[0].children[0].expanded).toBeTruthy();
-      expect(responseFunction).toHaveBeenCalled();
-      expect(responseFunction).toHaveBeenCalledTimes(1);
-      expect(responseFunction).toHaveBeenCalledWith(change);
-
-      comp.toggleNode.unsubscribe();
+      let output: StTreeEvent;
+      component.toggleNode.subscribe((event: StTreeEvent) => output = event);
+      element = fixture.nativeElement.querySelector('.button');
+      element.click();
+      fixture.detectChanges();
+      expect(JSON.stringify(output.tree).indexOf('expanded')).toBe(-1);
    });
 
-   it('should expand father nodes when its the root node with expandFatherBranch true', () => {
-      let responseFunction = jasmine.createSpy('response');
-      let node: StTreeNode = { name: 'name', icon: '', expanded: false, children: [{ name: 'child1', icon: '' }] };
-
-      comp.tree = { name: 'root', icon: '', expanded: true, children: [node] };
-      comp.toggleNode.subscribe(responseFunction);
-      comp.collapseChildrenBranch = false;
-      fixture.detectChanges();
-
-      expect((comp as any)._tree.expanded).toBeTruthy();
-      expect(responseFunction).not.toHaveBeenCalled();
-      expect(responseFunction).toHaveBeenCalledTimes(0);
-   });
-
-   it('should expand father nodes when its a deep node with expandFatherBranch false', () => {
-      let responseFunction = jasmine.createSpy('response');
-      let node: StTreeNode = { name: 'name', icon: '', expanded: false, children: [{ name: 'child1', icon: '', expanded: true }] };
-
-      comp.tree = { name: 'root', icon: '', children: [node] };
-      comp.toggleNode.subscribe(responseFunction);
-      comp.collapseChildrenBranch = false;
-      fixture.detectChanges();
-
-      expect((comp as any)._tree.expanded).toBeFalsy();
-      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
-      expect((comp as any)._tree.children[0].children[0].expanded).toBeTruthy();
-      expect(responseFunction).not.toHaveBeenCalled();
-   });
-
-   it('should expand father nodes when its a child of root node with expandFatherBranch false', () => {
-      let responseFunction = jasmine.createSpy('response');
-      let node: StTreeNode = { name: 'name', icon: '', expanded: true, children: [{ name: 'child1', icon: '' }] };
-
-      comp.tree = { name: 'root', icon: '', children: [node] };
-      comp.toggleNode.subscribe(responseFunction);
-      comp.collapseChildrenBranch = false;
-      fixture.detectChanges();
-
-      expect((comp as any)._tree.expanded).toBeFalsy();
-      expect((comp as any)._tree.children[0].expanded).toBeTruthy();
-      expect(responseFunction).not.toHaveBeenCalled();
-
-   });
-
-   it('should expand father nodes when its the root node with expandFatherBranch false', () => {
-      let responseFunction = jasmine.createSpy('response');
-      let node: StTreeNode = { name: 'name', icon: '', expanded: false, children: [{ name: 'child1', icon: '' }] };
-
-      comp.tree = { name: 'root', icon: '', expanded: true, children: [node] };
-      comp.toggleNode.subscribe(responseFunction);
-      comp.collapseChildrenBranch = false;
-      fixture.detectChanges();
-
-      expect((comp as any)._tree.expanded).toBeTruthy();
-      expect(responseFunction).not.toHaveBeenCalled();
+   it('should select node when click on node name of an unselected node', (done) => {
+      element = fixture.nativeElement.querySelector('.name');
+      component.selectNode.subscribe((event: StTreeEvent) => {
+         expect(fixture.nativeElement.querySelector('.button')).not.toBeNull();
+         expect(JSON.stringify(event.tree).indexOf('selected')).toBeGreaterThanOrEqual(0);
+         done();
+      });
+      element.click();
    });
 });

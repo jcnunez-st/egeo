@@ -63,8 +63,6 @@ export class StTreeComponent {
    @Input() collapseChildrenBranch: boolean = false;
    /** @Input {StTree} [node] Current node (for recursion purpose) */
    @Input() node: StTreeNode;
-   /** @Input {number[]} [path=[]] Path inside the tree of current node */
-   @Input() path: number[] = [];
 
    /** @Input {StTree} [^tree] Tree root node */
    @Input()
@@ -94,10 +92,6 @@ export class StTreeComponent {
 
    constructor(private _cd: ChangeDetectorRef, private _elementRef: ElementRef) {}
 
-   buildPath(child: number): number[] {
-      return [...this.path, child];
-   }
-
    hasChildren(): boolean {
       return this.node && this.node.children && this.node.children.length > 0;
    }
@@ -126,24 +120,26 @@ export class StTreeComponent {
    }
 
    onSelectNode(event: StTreeEvent): void {
-      if (!this.path.length) {
-         this.setPropertyDeep(this.node, 'selected', undefined);
-         this.setProperty(this.node, 'selected', true, event.target);
+      if (this.tree) {
+         this.removePropertyDeep(this.node, 'selected');
+         event.node.selected = true;
+         event.tree = this.node;
       }
-      this.selectNode.emit({
-         node: this.node,
-         target: event.target
-      });
+      this.selectNode.emit(event);
    }
 
    onToggleNode(event: StTreeEvent): void {
-      if (!this.path.length) {
-         if (event.node.expanded && this.collapseChildrenBranch) {
-            this.setPropertyDeep(event.node, 'expanded', undefined);
+      if (this.tree) {
+         if (event.node.expanded) {
+            if (this.collapseChildrenBranch) {
+               this.removePropertyDeep(event.node, 'expanded');
+            } else {
+               delete event.node.expanded;
+            }
          } else {
-            this.setProperty(this.node, 'expanded', event.node.expanded ? undefined : true, event.target);
+            event.node.expanded = true;
          }
-         event.node = this.node;
+         event.tree = this.node;
       }
       this.toggleNode.emit(event);
    }
@@ -152,7 +148,7 @@ export class StTreeComponent {
       if (!this.node.selected) {
          let event: StTreeEvent = {
             node: this.node,
-            target: this.path
+            tree: null
          };
          this.onSelectNode(event);
       }
@@ -161,24 +157,15 @@ export class StTreeComponent {
    toggle(): void {
       let event: StTreeEvent = {
          node: this.node,
-         target: this.path
+         tree: null
       };
       this.onToggleNode(event);
    }
 
-   private setProperty(node: StTreeNode, property: string, value: any, index: number[]): StTreeNode {
-      if (index.length) {
-         node.children[index[0]] = this.setProperty(node.children[index[0]], property, value, index.slice(1));
-      } else {
-         node[property] = value;
-      }
-      return node;
-   }
-
-   private setPropertyDeep(node: StTreeNode, property: string, value: any): StTreeNode {
-      node[property] = value;
+   private removePropertyDeep(node: StTreeNode, property: string): StTreeNode {
+      delete node[property];
       if (node.children) {
-         node.children = _map(node.children, (n) => this.setPropertyDeep(n, property, value));
+         node.children = _map(node.children, (n) => this.removePropertyDeep(n, property));
       }
       return node;
    }

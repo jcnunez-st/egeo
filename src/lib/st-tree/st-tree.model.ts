@@ -19,5 +19,5 @@ export class StTreeNode {
 
 export class StTreeEvent {
    node: StTreeNode;
-   target: number[];
+   tree: StTreeNode;
 }

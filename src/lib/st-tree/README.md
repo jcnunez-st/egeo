@@ -8,7 +8,6 @@
 | ---------------------- | -------- | ----- | ---------------------------------------------------------------------- | ------- |
 | collapseChildrenBranch | Boolean  | False | TRUE: Collapse all child nodes. FALSE: Only collapse the selected node | false   |
 | node                   | StTree   | False | Current node (for recursion purpose)                                   |         |
-| path                   | Number[] | False | Path inside the tree of current node                                   | []      |
 | tree                   | StTree   | True  | Tree root node                                                         |         |
 
 ## Outputs
@@ -48,7 +47,7 @@ export class StNodeTree {
 ```typescript
 export class StTreeEvent {
     node: StTreeNode;
-    target: number[];
+    tree: StTreeNode;
 }
 ```
 

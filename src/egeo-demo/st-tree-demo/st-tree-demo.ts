@@ -27,9 +27,7 @@ import { Observable } from 'rxjs/Observable';
 
 export class StTreeDemoComponent implements OnInit {
    public treeForm: FormGroup;
-   public nodeForm: FormGroup;
    public treeModel: TreeModel = { levels: 10, nodes: 50, name: 'Node' };
-   public nodeModel: NodeModel = { name: 'New name', path: [0] };
    public errors: StInputError = { generic: 'Error' };
 
    public treeA: StTreeNode = {
@@ -86,20 +84,16 @@ export class StTreeDemoComponent implements OnInit {
          'nodes': [this.treeModel.nodes, [Validators.required]],
          'name': [this.treeModel.name, [Validators.required]]
       });
-      this.nodeForm = this._fb.group({
-         'name': [this.nodeModel.name, [Validators.required]],
-         'path': [this.nodeModel.path, [Validators.required]]
-      });
    }
 
    onToggleNode(event: StTreeEvent): void {
       console.log('toogle node', event);
-      this.treeA = _cloneDeep(event.node);
+      this.treeA = _cloneDeep(event.tree);
    }
 
    onSelectNode(event: StTreeEvent): void {
       console.log('select node', event);
-      this.treeA = _cloneDeep(event.node);
+      this.treeA = _cloneDeep(event.tree);
    }
 
    onGenerateTrees(): void {
@@ -134,9 +128,4 @@ export interface TreeModel {
    levels: number;
    nodes: number;
    name: string;
-}
-
-export interface NodeModel {
-   name: string;
-   path: number[];
 }

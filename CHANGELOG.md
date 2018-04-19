@@ -11,6 +11,10 @@
 
 * st-form: Fix validations of nested properties
 
+**Others:**
+
+* st-tree: StTreeEvent refactor
+
 
 ## 9.0.0 (April 12, 2018)
 
